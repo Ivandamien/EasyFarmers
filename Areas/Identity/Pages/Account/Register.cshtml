@@ -1,0 +1,106 @@
+﻿@page
+@model RegisterModel
+
+@{
+    ViewData["Title"] = "Register - Easy Farming";
+}
+
+<div class="container-fluid p-0">
+    <div class="row g-0 min-vh-100">
+        <!-- Registration Form (Left Side) -->
+        <div class="col-md-5 d-flex align-items-center">
+            <div class="p-4 p-md-5 w-100">
+                <div class="mb-5">
+                    <a href="/" class="d-flex align-items-center text-decoration-none">
+                        <i class="fas fa-seedling text-success me-2" style="font-size: 1.8rem;"></i>
+                        <span class="h3 text-success fw-bold mb-0">Easy Farming</span>
+                    </a>
+                </div>
+
+                <h2 class="text-success fw-bold mb-4">Create Your Account</h2>
+                <p class="text-muted mb-4">Join our farming community and start your agricultural journey today.</p>
+
+                <form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post">
+                    <div asp-validation-summary="ModelOnly" class="text-danger mb-3" role="alert"></div>
+
+                    <!-- Email Field -->
+                    <div class="mb-3">
+                        <label asp-for="Input.Email" class="form-label">Email</label>
+                        <div class="input-group">
+                            <span class="input-group-text bg-success text-white"><i class="fas fa-envelope"></i></span>
+                            <input asp-for="Input.Email" class="form-control" autocomplete="username" aria-required="true" placeholder="name@example.com" />
+                        </div>
+                        <span asp-validation-for="Input.Email" class="text-danger"></span>
+                    </div>
+
+                    <!-- Password Field -->
+                    <div class="mb-3">
+                        <label asp-for="Input.Password" class="form-label">Password</label>
+                        <div class="input-group">
+                            <span class="input-group-text bg-success text-white"><i class="fas fa-lock"></i></span>
+                            <input asp-for="Input.Password" class="form-control" autocomplete="new-password" aria-required="true" placeholder="Password" />
+                        </div>
+                        <span asp-validation-for="Input.Password" class="text-danger"></span>
+                    </div>
+
+                    <!-- Confirm Password Field -->
+                    <div class="mb-3">
+                        <label asp-for="Input.ConfirmPassword" class="form-label">Confirm Password</label>
+                        <div class="input-group">
+                            <span class="input-group-text bg-success text-white"><i class="fas fa-lock"></i></span>
+                            <input asp-for="Input.ConfirmPassword" class="form-control" autocomplete="new-password" aria-required="true" placeholder="Confirm Password" />
+                        </div>
+                        <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+                    </div>
+
+                    <!-- Register Button -->
+                    <div class="d-grid gap-2 mb-4">
+                        <button id="registerSubmit" type="submit" class="btn btn-success btn-lg">
+                            <i class="fas fa-user-plus me-2"></i>Register
+                        </button>
+                    </div>
+
+                    <!-- Login Link -->
+                    <div class="text-center">
+                        <p class="mb-0">
+                            Already have an account?
+                            <a asp-page="./Login" asp-route-returnUrl="@Model.ReturnUrl" class="text-success fw-bold">Sign in</a>
+                        </p>
+                    </div>
+                </form>
+
+                <!-- External Logins Section -->
+                @if (Model.ExternalLogins?.Count > 0)
+                {
+                    <div class="mt-4">
+                        <hr />
+                        <h5 class="text-center mb-3">Or register with</h5>
+                        <form id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="d-flex justify-content-center gap-2">
+                            @foreach (var provider in Model.ExternalLogins)
+                            {
+                                <button type="submit" class="btn btn-outline-success" name="provider" value="@provider.Name">
+                                    <i class="fab fa-@(provider.Name.ToLower()) me-2"></i>@provider.DisplayName
+                                </button>
+                            }
+                        </form>
+                    </div>
+                }
+            </div>
+        </div>
+
+        <!-- Image (Right Side) -->
+        <div class="col-md-7 d-none d-md-block">
+            <div class="position-relative h-100">
+                <div class="position-absolute w-100 h-100" style="background: linear-gradient(rgba(46, 125, 50, 0.7), rgba(27, 94, 32, 0.8)), url('https://images.pexels.com/photos/2933243/pexels-photo-2933243.jpeg?auto=compress&cs=tinysrgb&w=1200') no-repeat center center; background-size: cover;"></div>
+                <div class="position-absolute text-white p-5" style="bottom: 0;">
+                    <h3 class="fw-bold">Join Our Farming Community</h3>
+                    <p class="lead">Get access to premium products, expert advice, and connect with fellow farmers.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

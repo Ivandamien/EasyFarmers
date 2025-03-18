@@ -1,0 +1,251 @@
+@* @model IEnumerable<ProductCatalogApp.Models.CartItem> *@
+@* *@
+@* @{ *@
+@*     ViewData["Title"] = "Shopping Cart"; *@
+@*     decimal total = Model.Sum(i => i.Product.Price * i.Quantity); *@
+@* } *@
+@* *@
+@* <div class="container my-5"> *@
+@*     <div class="row"> *@
+@*         <div class="col-12"> *@
+@*             <h1 class="mb-4 text-center">Your Shopping Cart</h1> *@
+@*              *@
+@*             @if (!Model.Any()) *@
+@*             { *@
+@*                 <div class="text-center p-5 bg-light rounded shadow-sm"> *@
+@*                     <i class="bi bi-cart-x" style="font-size: 3rem; color: #6c757d;"></i> *@
+@*                     <h3 class="mt-3">Your cart is empty</h3> *@
+@*                     <p class="text-muted">Looks like you haven't added anything to your cart yet.</p> *@
+@*                     <a asp-controller="Product" asp-action="Index" class="btn btn-primary mt-3">Continue Shopping</a> *@
+@*                 </div> *@
+@*             } *@
+@*             else *@
+@*             { *@
+@*                 <div class="card shadow-sm"> *@
+@*                     <div class="card-body p-0"> *@
+@*                         <div class="table-responsive"> *@
+@*                             <table class="table table-hover mb-0"> *@
+@*                                 <thead class="table-light"> *@
+@*                                     <tr> *@
+@*                                         <th class="ps-4">Product</th> *@
+@*                                         <th>Price</th> *@
+@*                                         <th>Quantity</th> *@
+@*                                         <th>Subtotal</th> *@
+@*                                         <th class="text-end pe-4">Actions</th> *@
+@*                                     </tr> *@
+@*                                 </thead> *@
+@*                                 <tbody> *@
+@*                                     @foreach (var item in Model) *@
+@*                                     { *@
+@*                                         <tr> *@
+@*                                             <td class="align-middle ps-4"> *@
+@*                                                 <div class="d-flex align-items-center"> *@
+@*                                                     @if (!string.IsNullOrEmpty(item.Product.ImageUrl)) *@
+@*                                                     { *@
+@*                                                         <img src="@item.Product.ImageUrl" alt="@item.Product.Name" class="me-3" style="width: 50px; height: 50px; object-fit: cover;"> *@
+@*                                                     } *@
+@*                                                     else  *@
+@*                                                     { *@
+@*                                                         <img src="/images/no-image.png" alt="No Image" class="me-3" style="width: 50px; height: 50px; object-fit: cover;"> *@
+@*                                                     } *@
+@*                                                     <span>@item.Product.Name</span> *@
+@*                                                 </div> *@
+@*                                             </td> *@
+@*                                             <td class="align-middle">$@item.Product.Price.ToString("F2")</td> *@
+@*                                             <td class="align-middle"> *@
+@*                                                 <div class="d-flex align-items-center"> *@
+@*                                                     <form asp-action="UpdateQuantity" method="post" class="d-flex align-items-center"> *@
+@*                                                         <input type="hidden" name="id" value="@item.Id" /> *@
+@*                                                         <input type="number" name="quantity" value="@item.Quantity" min="1" class="form-control form-control-sm" style="width: 60px;"> *@
+@*                                                         <button type="submit" class="btn btn-sm btn-outline-secondary ms-2"> *@
+@*                                                             <i class="bi bi-arrow-clockwise"></i> *@
+@*                                                         </button> *@
+@*                                                     </form> *@
+@*                                                 </div> *@
+@*                                             </td> *@
+@*                                             <td class="align-middle text-primary fw-bold">$@((item.Product.Price * item.Quantity).ToString("F2"))</td> *@
+@*                                             <td class="align-middle text-end pe-4"> *@
+@*                                                 <form asp-action="RemoveFromCart" method="post"> *@
+@*                                                     <input type="hidden" name="id" value="@item.Id" /> *@
+@*                                                     <button type="submit" class="btn btn-sm btn-outline-danger"> *@
+@*                                                         <i class="bi bi-trash"></i> Remove *@
+@*                                                     </button> *@
+@*                                                 </form> *@
+@*                                             </td> *@
+@*                                         </tr> *@
+@*                                     } *@
+@*                                 </tbody> *@
+@*                             </table> *@
+@*                         </div> *@
+@*                     </div> *@
+@*                 </div> *@
+@*                  *@
+@*                 <div class="row mt-4"> *@
+@*                     <div class="col-md-8 mb-3"> *@
+@*                         <div class="d-flex"> *@
+@*                             <a asp-controller="Product" asp-action="Index" class="btn btn-outline-secondary"> *@
+@*                                 <i class="bi bi-arrow-left me-2"></i>Continue Shopping *@
+@*                             </a> *@
+@*                             <form asp-action="ClearCart" method="post" class="ms-3"> *@
+@*                                 <button type="submit" class="btn btn-outline-danger"> *@
+@*                                     <i class="bi bi-trash me-2"></i>Clear Cart *@
+@*                                 </button> *@
+@*                             </form> *@
+@*                         </div> *@
+@*                     </div> *@
+@*                     <div class="col-md-4"> *@
+@*                         <div class="card shadow-sm"> *@
+@*                             <div class="card-body"> *@
+@*                                 <h5 class="card-title">Order Summary</h5> *@
+@*                                 <hr> *@
+@*                                 <div class="d-flex justify-content-between mb-2"> *@
+@*                                     <span>Subtotal:</span> *@
+@*                                     <span>$@total.ToString("F2")</span> *@
+@*                                 </div> *@
+@*                                 <div class="d-flex justify-content-between mb-2"> *@
+@*                                     <span>Shipping:</span> *@
+@*                                     <span>Free</span> *@
+@*                                 </div> *@
+@*                                 <hr> *@
+@*                                 <div class="d-flex justify-content-between fw-bold mb-3"> *@
+@*                                     <span>Total:</span> *@
+@*                                     <span class="text-primary h5 mb-0">$@total.ToString("F2")</span> *@
+@*                                 </div> *@
+@*                                 <a href="#" class="btn btn-primary w-100">Proceed to Checkout</a> *@
+@*                             </div> *@
+@*                         </div> *@
+@*                     </div> *@
+@*                 </div> *@
+@*             } *@
+@*         </div> *@
+@*     </div> *@
+@* </div> *@
+@model IEnumerable<EasyFarmers.Models.CartItem>
+
+@{
+    ViewData["Title"] = "Your Shopping Cart - Easy Farming";
+    decimal total = Model.Sum(i => i.Product.Price * i.Quantity);
+}
+
+<div class="container my-5">
+    <div class="row">
+        <div class="col-12">
+            <h1 class="mb-4 text-center text-success fw-bold">Your Shopping Cart</h1>
+
+            @if (!Model.Any())
+            {
+                <div class="text-center p-5 bg-light rounded shadow-sm" style="background-color: #e8f5e9 !important;">
+                    <i class="fas fa-shopping-cart text-success" style="font-size: 3rem;"></i>
+                    <h3 class="mt-3 text-success">Your cart is empty</h3>
+                    <p class="text-muted">Looks like you haven't added any farming products to your cart yet.</p>
+                    <a asp-controller="Product" asp-action="Index" class="btn btn-success mt-3">
+                        <i class="fas fa-seedling me-2"></i>Browse Products
+                    </a>
+                </div>
+            }
+            else
+            {
+                <div class="card border-0 shadow-sm">
+                    <div class="card-body p-0">
+                        <div class="table-responsive">
+                            <table class="table table-hover mb-0">
+                                <thead style="background-color: #e8f5e9;">
+                                <tr>
+                                    <th class="ps-4">Product</th>
+                                    <th>Price</th>
+                                    <th>Quantity</th>
+                                    <th>Subtotal</th>
+                                    <th class="text-end pe-4">Actions</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td class="align-middle ps-4">
+                                            <div class="d-flex align-items-center">
+                                                @if (!string.IsNullOrEmpty(item.Product.ImageUrl))
+                                                {
+                                                    <img src="@item.Product.ImageUrl" alt="@item.Product.Name" class="me-3 rounded" style="width: 60px; height: 60px; object-fit: cover;">
+                                                }
+                                                else
+                                                {
+                                                    <div class="rounded bg-success bg-opacity-10 d-flex align-items-center justify-content-center me-3" style="width: 60px; height: 60px;">
+                                                        <i class="fas fa-leaf text-success"></i>
+                                                    </div>
+                                                }
+                                                <span>@item.Product.Name</span>
+                                            </div>
+                                        </td>
+                                        <td class="align-middle">$@item.Product.Price.ToString("F2")</td>
+                                        <td class="align-middle">
+                                            <div class="d-flex align-items-center">
+                                                <form asp-action="UpdateQuantity" method="post" class="d-flex align-items-center">
+                                                    <input type="hidden" name="id" value="@item.Id" />
+                                                    <input type="number" name="quantity" value="@item.Quantity" min="1" class="form-control form-control-sm" style="width: 60px;">
+                                                    <button type="submit" class="btn btn-sm btn-outline-success ms-2">
+                                                        <i class="fas fa-sync-alt"></i>
+                                                    </button>
+                                                </form>
+                                            </div>
+                                        </td>
+                                        <td class="align-middle text-success fw-bold">$@((item.Product.Price * item.Quantity).ToString("F2"))</td>
+                                        <td class="align-middle text-end pe-4">
+                                            <form asp-action="RemoveFromCart" method="post">
+                                                <input type="hidden" name="id" value="@item.Id" />
+                                                <button type="submit" class="btn btn-sm btn-outline-danger">
+                                                    <i class="fas fa-trash"></i> Remove
+                                                </button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mt-4">
+                    <div class="col-md-8 mb-3">
+                        <div class="d-flex">
+                            <a asp-controller="Product" asp-action="Index" class="btn btn-outline-success">
+                                <i class="fas fa-arrow-left me-2"></i>Continue Shopping
+                            </a>
+                            <form asp-action="ClearCart" method="post" class="ms-3">
+                                <button type="submit" class="btn btn-outline-danger">
+                                    <i class="fas fa-trash me-2"></i>Clear Cart
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card border-0 shadow-sm">
+                            <div class="card-header bg-success text-white">
+                                <h5 class="card-title mb-0">Order Summary</h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between mb-2">
+                                    <span>Subtotal:</span>
+                                    <span>$@total.ToString("F2")</span>
+                                </div>
+                                <div class="d-flex justify-content-between mb-2">
+                                    <span>Shipping:</span>
+                                    <span>Free</span>
+                                </div>
+                                <hr>
+                                <div class="d-flex justify-content-between fw-bold mb-3">
+                                    <span>Total:</span>
+                                    <span class="text-success h5 mb-0">$@total.ToString("F2")</span>
+                                </div>
+                                <a href="#" class="btn btn-success w-100">
+                                    <i class="fas fa-check-circle me-2"></i>Proceed to Checkout
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>

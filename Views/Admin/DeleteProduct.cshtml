@@ -1,0 +1,115 @@
+@model EasyFarmers.Models.Product
+
+@{
+    ViewData["Title"] = "Delete Farming Product";
+}
+
+<div class="container py-4">
+    <div class="card border-0 shadow-sm">
+        <div class="card-header bg-white py-3">
+            <div class="d-flex align-items-center">
+                <div class="rounded-circle bg-danger bg-opacity-10 p-2 me-3">
+                    <i class="fas fa-trash-alt text-danger" style="font-size: 1.2rem;"></i>
+                </div>
+                <h2 class="mb-0 text-danger">Delete Farming Product</h2>
+            </div>
+        </div>
+        <div class="card-body p-4">
+            <div class="alert alert-warning">
+                <i class="fas fa-exclamation-triangle me-2"></i>
+                <strong>Warning:</strong> This action cannot be undone. Are you sure you want to delete this product?
+            </div>
+
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-4 text-center mb-3 mb-md-0">
+                                    @if (!string.IsNullOrEmpty(Model.ImageUrl))
+                                    {
+                                        <img src="@Model.ImageUrl" alt="@Model.Name" class="img-fluid rounded" style="max-height: 150px;">
+                                    }
+                                    else
+                                    {
+                                        <div class="bg-light rounded p-4">
+                                            <i class="fas fa-image text-secondary" style="font-size: 4rem;"></i>
+                                        </div>
+                                    }
+                                </div>
+                                <div class="col-md-8">
+                                    <h4 class="mb-3">@Model.Name</h4>
+                                    <dl class="row mb-0">
+                                        <dt class="col-sm-4">Price:</dt>
+                                        <dd class="col-sm-8 text-success fw-bold">$@Model.Price.ToString("F2")</dd>
+
+                                        <dt class="col-sm-4">Stock Quantity:</dt>
+                                        <dd class="col-sm-8">@Model.StockQuantity units</dd>
+
+                                        <dt class="col-sm-4">ID:</dt>
+                                        <dd class="col-sm-8">@Model.Id</dd>
+                                    </dl>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    @if (!string.IsNullOrEmpty(Model.Description))
+                    {
+                        <div class="card mb-4">
+                            <div class="card-header bg-light">
+                                <h5 class="mb-0">Product Description</h5>
+                            </div>
+                            <div class="card-body">
+                                <p class="mb-0">@Model.Description</p>
+                            </div>
+                        </div>
+                    }
+
+                    <hr class="my-4">
+
+                    <form asp-action="DeleteProduct">
+                        <input type="hidden" asp-for="Id" />
+                        <div class="d-flex justify-content-between">
+                            <a asp-action="ManageProducts" class="btn btn-outline-secondary">
+                                <i class="fas fa-arrow-left me-2"></i>Back to Products
+                            </a>
+                            <button type="submit" class="btn btn-danger px-4">
+                                <i class="fas fa-trash-alt me-2"></i>Delete Permanently
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="col-lg-4 d-none d-lg-block">
+                    <div class="card bg-light border-0">
+                        <div class="card-body p-4">
+                            <h5 class="text-danger mb-3">
+                                <i class="fas fa-exclamation-circle me-2"></i>Deletion Impact
+                            </h5>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item bg-transparent border-bottom px-0">
+                                    <strong>Inventory Records</strong> - Will be permanently removed
+                                </li>
+                                <li class="list-group-item bg-transparent border-bottom px-0">
+                                    <strong>Product Images</strong> - External images will not be deleted
+                                </li>
+                                <li class="list-group-item bg-transparent border-bottom px-0">
+                                    <strong>Order History</strong> - Will be preserved for accounting
+                                </li>
+                                <li class="list-group-item bg-transparent px-0">
+                                    <strong>Product Data</strong> - Cannot be recovered after deletion
+                                </li>
+                            </ul>
+
+                            <div class="alert alert-info mt-4">
+                                <i class="fas fa-info-circle me-2"></i>
+                                <strong>Consider alternatives:</strong> If you want to keep the product but stop selling it, consider setting the stock to zero instead.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

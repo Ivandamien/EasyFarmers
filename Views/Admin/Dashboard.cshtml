@@ -1,0 +1,482 @@
+@* @{ *@
+@*     ViewData["Title"] = "Admin Dashboard"; *@
+@* } *@
+@* *@
+@* <div class="container-fluid py-4"> *@
+@*     <div class="d-flex justify-content-between align-items-center mb-4"> *@
+@*         <div> *@
+@*             <h1 class="h2 mb-0">Admin Dashboard</h1> *@
+@*             <p class="text-muted">Welcome back, Administrator</p> *@
+@*         </div> *@
+@*         <div> *@
+@*             <button class="btn btn-sm btn-outline-secondary me-2"> *@
+@*                 <i class="bi bi-gear-fill me-1"></i> Settings *@
+@*             </button> *@
+@*             <button class="btn btn-sm btn-outline-primary"> *@
+@*                 <i class="bi bi-bell-fill me-1"></i> Notifications *@
+@*             </button> *@
+@*         </div> *@
+@*     </div> *@
+@* *@
+@*     <!-- Stats Overview Row --> *@
+@*     <div class="row mb-4"> *@
+@*         <div class="col-md-3 col-sm-6 mb-3"> *@
+@*             <div class="card border-0 shadow-sm h-100"> *@
+@*                 <div class="card-body d-flex align-items-center"> *@
+@*                     <div class="rounded-circle bg-primary bg-opacity-10 p-3 me-3"> *@
+@*                         <i class="bi bi-box-seam text-primary" style="font-size: 1.5rem;"></i> *@
+@*                     </div> *@
+@*                     <div> *@
+@*                         <h6 class="text-muted mb-1">Total Products</h6> *@
+@*                         <h3 class="mb-0">42</h3> *@
+@*                     </div> *@
+@*                 </div> *@
+@*             </div> *@
+@*         </div> *@
+@*         <div class="col-md-3 col-sm-6 mb-3"> *@
+@*             <div class="card border-0 shadow-sm h-100"> *@
+@*                 <div class="card-body d-flex align-items-center"> *@
+@*                     <div class="rounded-circle bg-success bg-opacity-10 p-3 me-3"> *@
+@*                         <i class="bi bi-people-fill text-success" style="font-size: 1.5rem;"></i> *@
+@*                     </div> *@
+@*                     <div> *@
+@*                         <h6 class="text-muted mb-1">Total Users</h6> *@
+@*                         <h3 class="mb-0">128</h3> *@
+@*                     </div> *@
+@*                 </div> *@
+@*             </div> *@
+@*         </div> *@
+@*         <div class="col-md-3 col-sm-6 mb-3"> *@
+@*             <div class="card border-0 shadow-sm h-100"> *@
+@*                 <div class="card-body d-flex align-items-center"> *@
+@*                     <div class="rounded-circle bg-warning bg-opacity-10 p-3 me-3"> *@
+@*                         <i class="bi bi-cart-check-fill text-warning" style="font-size: 1.5rem;"></i> *@
+@*                     </div> *@
+@*                     <div> *@
+@*                         <h6 class="text-muted mb-1">Orders Today</h6> *@
+@*                         <h3 class="mb-0">12</h3> *@
+@*                     </div> *@
+@*                 </div> *@
+@*             </div> *@
+@*         </div> *@
+@*         <div class="col-md-3 col-sm-6 mb-3"> *@
+@*             <div class="card border-0 shadow-sm h-100"> *@
+@*                 <div class="card-body d-flex align-items-center"> *@
+@*                     <div class="rounded-circle bg-info bg-opacity-10 p-3 me-3"> *@
+@*                         <i class="bi bi-currency-dollar text-info" style="font-size: 1.5rem;"></i> *@
+@*                     </div> *@
+@*                     <div> *@
+@*                         <h6 class="text-muted mb-1">Revenue</h6> *@
+@*                         <h3 class="mb-0">$4,520</h3> *@
+@*                     </div> *@
+@*                 </div> *@
+@*             </div> *@
+@*         </div> *@
+@*     </div> *@
+@* *@
+@*     <!-- Main Management Cards --> *@
+@*     <div class="row"> *@
+@*         <div class="col-lg-6 mb-4"> *@
+@*             <div class="card border-0 shadow-sm h-100"> *@
+@*                 <div class="card-header bg-white d-flex justify-content-between align-items-center py-3"> *@
+@*                     <h5 class="mb-0"> *@
+@*                         <i class="bi bi-box-seam me-2 text-primary"></i> *@
+@*                         Product Management *@
+@*                     </h5> *@
+@*                     <span class="badge bg-primary">42 Products</span> *@
+@*                 </div> *@
+@*                 <div class="card-body"> *@
+@*                     <div class="d-flex align-items-center mb-3"> *@
+@*                         <div class="flex-grow-1"> *@
+@*                             <p class="mb-0">Manage your store's product catalog, inventory, and pricing.</p> *@
+@*                         </div> *@
+@*                     </div> *@
+@*                     <div class="row g-3"> *@
+@*                         <div class="col-sm-6"> *@
+@*                             <div class="card bg-light border-0 h-100"> *@
+@*                                 <div class="card-body"> *@
+@*                                     <h6 class="mb-2"><i class="bi bi-plus-circle me-2"></i> Add Products</h6> *@
+@*                                     <p class="card-text small">Create new product listings for your store.</p> *@
+@*                                 </div> *@
+@*                             </div> *@
+@*                         </div> *@
+@*                         <div class="col-sm-6"> *@
+@*                             <div class="card bg-light border-0 h-100"> *@
+@*                                 <div class="card-body"> *@
+@*                                     <h6 class="mb-2"><i class="bi bi-pencil-square me-2"></i> Edit Products</h6> *@
+@*                                     <p class="card-text small">Update existing product information.</p> *@
+@*                                 </div> *@
+@*                             </div> *@
+@*                         </div> *@
+@*                     </div> *@
+@*                 </div> *@
+@*                 <div class="card-footer bg-white border-top-0 d-flex justify-content-between align-items-center"> *@
+@*                     <span class="small text-muted">Last updated: Today</span> *@
+@*                     <a asp-action="ManageProducts" class="btn btn-primary"> *@
+@*                         <i class="bi bi-box-arrow-right me-1"></i> Manage Products *@
+@*                     </a> *@
+@*                 </div> *@
+@*             </div> *@
+@*         </div> *@
+@*          *@
+@*         <div class="col-lg-6 mb-4"> *@
+@*             <div class="card border-0 shadow-sm h-100"> *@
+@*                 <div class="card-header bg-white d-flex justify-content-between align-items-center py-3"> *@
+@*                     <h5 class="mb-0"> *@
+@*                         <i class="bi bi-people me-2 text-success"></i> *@
+@*                         User Management *@
+@*                     </h5> *@
+@*                     <span class="badge bg-success">128 Users</span> *@
+@*                 </div> *@
+@*                 <div class="card-body"> *@
+@*                     <div class="d-flex align-items-center mb-3"> *@
+@*                         <div class="flex-grow-1"> *@
+@*                             <p class="mb-0">Manage customer accounts, admin users, and permission levels.</p> *@
+@*                         </div> *@
+@*                     </div> *@
+@*                     <div class="row g-3"> *@
+@*                         <div class="col-sm-6"> *@
+@*                             <div class="card bg-light border-0 h-100"> *@
+@*                                 <div class="card-body"> *@
+@*                                     <h6 class="mb-2"><i class="bi bi-person-plus me-2"></i> Add Users</h6> *@
+@*                                     <p class="card-text small">Create new user accounts and assign roles.</p> *@
+@*                                 </div> *@
+@*                             </div> *@
+@*                         </div> *@
+@*                         <div class="col-sm-6"> *@
+@*                             <div class="card bg-light border-0 h-100"> *@
+@*                                 <div class="card-body"> *@
+@*                                     <h6 class="mb-2"><i class="bi bi-shield-lock me-2"></i> Permissions</h6> *@
+@*                                     <p class="card-text small">Manage user roles and access levels.</p> *@
+@*                                 </div> *@
+@*                             </div> *@
+@*                         </div> *@
+@*                     </div> *@
+@*                 </div> *@
+@*                 <div class="card-footer bg-white border-top-0 d-flex justify-content-between align-items-center"> *@
+@*                     <span class="small text-muted">Last updated: Yesterday</span> *@
+@*                     <a asp-action="ManageUsers" class="btn btn-success"> *@
+@*                         <i class="bi bi-box-arrow-right me-1"></i> Manage Users *@
+@*                     </a> *@
+@*                 </div> *@
+@*             </div> *@
+@*         </div> *@
+@*     </div> *@
+@* *@
+@*     <!-- Additional Management Options --> *@
+@*     <div class="row"> *@
+@*         <div class="col-lg-4 mb-4"> *@
+@*             <div class="card border-0 shadow-sm h-100"> *@
+@*                 <div class="card-body text-center p-4"> *@
+@*                     <div class="rounded-circle bg-warning bg-opacity-10 p-3 d-inline-block mb-3"> *@
+@*                         <i class="bi bi-cart-fill text-warning" style="font-size: 2rem;"></i> *@
+@*                     </div> *@
+@*                     <h5>Order Management</h5> *@
+@*                     <p class="text-muted mb-4">View and manage customer orders and shipping details.</p> *@
+@*                     <a href="#" class="btn btn-outline-warning">Manage Orders</a> *@
+@*                 </div> *@
+@*             </div> *@
+@*         </div> *@
+@*          *@
+@*         <div class="col-lg-4 mb-4"> *@
+@*             <div class="card border-0 shadow-sm h-100"> *@
+@*                 <div class="card-body text-center p-4"> *@
+@*                     <div class="rounded-circle bg-info bg-opacity-10 p-3 d-inline-block mb-3"> *@
+@*                         <i class="bi bi-graph-up text-info" style="font-size: 2rem;"></i> *@
+@*                     </div> *@
+@*                     <h5>Analytics</h5> *@
+@*                     <p class="text-muted mb-4">View sales reports, customer insights, and performance metrics.</p> *@
+@*                     <a href="#" class="btn btn-outline-info">View Reports</a> *@
+@*                 </div> *@
+@*             </div> *@
+@*         </div> *@
+@*          *@
+@*         <div class="col-lg-4 mb-4"> *@
+@*             <div class="card border-0 shadow-sm h-100"> *@
+@*                 <div class="card-body text-center p-4"> *@
+@*                     <div class="rounded-circle bg-danger bg-opacity-10 p-3 d-inline-block mb-3"> *@
+@*                         <i class="bi bi-gear-fill text-danger" style="font-size: 2rem;"></i> *@
+@*                     </div> *@
+@*                     <h5>Store Settings</h5> *@
+@*                     <p class="text-muted mb-4">Configure your store settings, payment options, and shipping methods.</p> *@
+@*                     <a href="#" class="btn btn-outline-danger">Manage Settings</a> *@
+@*                 </div> *@
+@*             </div> *@
+@*         </div> *@
+@*     </div> *@
+@* </div> *@
+
+@{
+    ViewData["Title"] = "Farm Management Dashboard";
+}
+
+<div class="container-fluid py-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <h1 class="h2 mb-0 text-success">Farm Management Dashboard</h1>
+            <p class="text-muted">Welcome back, Farm Administrator</p>
+        </div>
+        <div>
+            <button class="btn btn-sm btn-outline-success me-2">
+                <i class="fas fa-cog me-1"></i> Settings
+            </button>
+            <button class="btn btn-sm btn-outline-success">
+                <i class="fas fa-bell me-1"></i> Notifications
+            </button>
+        </div>
+    </div>
+
+    <!-- Stats Overview Row -->
+    <div class="row mb-4">
+        <div class="col-md-3 col-sm-6 mb-3">
+            <div class="card border-0 shadow-sm h-100">
+                <div class="card-body d-flex align-items-center">
+                    <div class="rounded-circle bg-success bg-opacity-10 p-3 me-3">
+                        <i class="fas fa-seedling text-success" style="font-size: 1.5rem;"></i>
+                    </div>
+                    <div>
+                        <h6 class="text-muted mb-1">Total Products</h6>
+                        <h3 class="mb-0">42</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 col-sm-6 mb-3">
+            <div class="card border-0 shadow-sm h-100">
+                <div class="card-body d-flex align-items-center">
+                    <div class="rounded-circle bg-success bg-opacity-10 p-3 me-3">
+                        <i class="fas fa-users text-success" style="font-size: 1.5rem;"></i>
+                    </div>
+                    <div>
+                        <h6 class="text-muted mb-1">Total Farmers</h6>
+                        <h3 class="mb-0">128</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 col-sm-6 mb-3">
+            <div class="card border-0 shadow-sm h-100">
+                <div class="card-body d-flex align-items-center">
+                    <div class="rounded-circle bg-success bg-opacity-10 p-3 me-3">
+                        <i class="fas fa-shopping-basket text-success" style="font-size: 1.5rem;"></i>
+                    </div>
+                    <div>
+                        <h6 class="text-muted mb-1">Orders Today</h6>
+                        <h3 class="mb-0">12</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 col-sm-6 mb-3">
+            <div class="card border-0 shadow-sm h-100">
+                <div class="card-body d-flex align-items-center">
+                    <div class="rounded-circle bg-success bg-opacity-10 p-3 me-3">
+                        <i class="fas fa-dollar-sign text-success" style="font-size: 1.5rem;"></i>
+                    </div>
+                    <div>
+                        <h6 class="text-muted mb-1">Revenue</h6>
+                        <h3 class="mb-0">$4,520</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Management Cards -->
+    <div class="row">
+        <div class="col-lg-6 mb-4">
+            <div class="card border-0 shadow-sm h-100">
+                <div class="card-header bg-white d-flex justify-content-between align-items-center py-3">
+                    <h5 class="mb-0 text-success">
+                        <i class="fas fa-leaf me-2"></i>
+                        Product Management
+                    </h5>
+                    <span class="badge bg-success">42 Products</span>
+                </div>
+                <div class="card-body">
+                    <div class="d-flex align-items-center mb-3">
+                        <div class="flex-grow-1">
+                            <p class="mb-0">Manage your farming product catalog, inventory, and pricing.</p>
+                        </div>
+                    </div>
+                    <div class="row g-3">
+                        <div class="col-sm-6">
+                            <div class="card bg-light border-0 h-100">
+                                <div class="card-body">
+                                    <h6 class="mb-2"><i class="fas fa-plus-circle me-2 text-success"></i> Add Products</h6>
+                                    <p class="card-text small">Create new farming product listings.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="card bg-light border-0 h-100">
+                                <div class="card-body">
+                                    <h6 class="mb-2"><i class="fas fa-edit me-2 text-success"></i> Edit Products</h6>
+                                    <p class="card-text small">Update existing product information.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer bg-white border-top-0 d-flex justify-content-between align-items-center">
+                    <span class="small text-muted">Last updated: Today</span>
+                    <a asp-action="ManageProducts" class="btn btn-success">
+                        <i class="fas fa-arrow-right me-1"></i> Manage Products
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-lg-6 mb-4">
+            <div class="card border-0 shadow-sm h-100">
+                <div class="card-header bg-white d-flex justify-content-between align-items-center py-3">
+                    <h5 class="mb-0 text-success">
+                        <i class="fas fa-users me-2"></i>
+                        Farmer Management
+                    </h5>
+                    <span class="badge bg-success">128 Farmers</span>
+                </div>
+                <div class="card-body">
+                    <div class="d-flex align-items-center mb-3">
+                        <div class="flex-grow-1">
+                            <p class="mb-0">Manage farmer accounts, admin users, and permission levels.</p>
+                        </div>
+                    </div>
+                    <div class="row g-3">
+                        <div class="col-sm-6">
+                            <div class="card bg-light border-0 h-100">
+                                <div class="card-body">
+                                    <h6 class="mb-2"><i class="fas fa-user-plus me-2 text-success"></i> Add Farmers</h6>
+                                    <p class="card-text small">Create new farmer accounts and assign roles.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="card bg-light border-0 h-100">
+                                <div class="card-body">
+                                    <h6 class="mb-2"><i class="fas fa-shield-alt me-2 text-success"></i> Permissions</h6>
+                                    <p class="card-text small">Manage user roles and access levels.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer bg-white border-top-0 d-flex justify-content-between align-items-center">
+                    <span class="small text-muted">Last updated: Yesterday</span>
+                    <a asp-action="ManageUsers" class="btn btn-success">
+                        <i class="fas fa-arrow-right me-1"></i> Manage Farmers
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Additional Management Options -->
+    <div class="row">
+        <div class="col-lg-4 mb-4">
+            <div class="card border-0 shadow-sm h-100">
+                <div class="card-body text-center p-4">
+                    <div class="rounded-circle bg-success bg-opacity-10 p-3 d-inline-block mb-3">
+                        <i class="fas fa-shopping-basket text-success" style="font-size: 2rem;"></i>
+                    </div>
+                    <h5 class="text-success">Order Management</h5>
+                    <p class="text-muted mb-4">View and manage farmer orders and delivery details.</p>
+                    <a href="#" class="btn btn-outline-success">Manage Orders</a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-lg-4 mb-4">
+            <div class="card border-0 shadow-sm h-100">
+                <div class="card-body text-center p-4">
+                    <div class="rounded-circle bg-success bg-opacity-10 p-3 d-inline-block mb-3">
+                        <i class="fas fa-chart-line text-success" style="font-size: 2rem;"></i>
+                    </div>
+                    <h5 class="text-success">Harvest Analytics</h5>
+                    <p class="text-muted mb-4">View sales reports, farmer insights, and performance metrics.</p>
+                    <a href="#" class="btn btn-outline-success">View Reports</a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-lg-4 mb-4">
+            <div class="card border-0 shadow-sm h-100">
+                <div class="card-body text-center p-4">
+                    <div class="rounded-circle bg-success bg-opacity-10 p-3 d-inline-block mb-3">
+                        <i class="fas fa-cogs text-success" style="font-size: 2rem;"></i>
+                    </div>
+                    <h5 class="text-success">Farm Settings</h5>
+                    <p class="text-muted mb-4">Configure your farm store settings, payment options, and delivery methods.</p>
+                    <a href="#" class="btn btn-outline-success">Manage Settings</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Seasonal Insights Section -->
+    <div class="card border-0 shadow-sm mb-4">
+        <div class="card-header bg-white py-3">
+            <h5 class="mb-0 text-success">
+                <i class="fas fa-calendar-alt me-2"></i> Seasonal Insights
+            </h5>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-8">
+                    <h6>Popular Products This Season</h6>
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Product</th>
+                                    <th>Category</th>
+                                    <th>Sales</th>
+                                    <th>Stock</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Organic Seeds</td>
+                                    <td>Seeds</td>
+                                    <td>245 units</td>
+                                    <td><span class="badge bg-success">In Stock</span></td>
+                                </tr>
+                                <tr>
+                                    <td>Premium Farming Tools</td>
+                                    <td>Tools</td>
+                                    <td>128 units</td>
+                                    <td><span class="badge bg-success">In Stock</span></td>
+                                </tr>
+                                <tr>
+                                    <td>Organic Fertilizers</td>
+                                    <td>Fertilizers</td>
+                                    <td>187 units</td>
+                                    <td><span class="badge bg-warning text-dark">Low Stock</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <h6>Upcoming Events</h6>
+                    <div class="list-group">
+                        <a href="#" class="list-group-item list-group-item-action">
+                            <div class="d-flex w-100 justify-content-between">
+                                <h6 class="mb-1">Farmer Workshop</h6>
+                                <small>March 25</small>
+                            </div>
+                            <p class="mb-1 small">Training on sustainable farming practices</p>
+                        </a>
+                        <a href="#" class="list-group-item list-group-item-action">
+                            <div class="d-flex w-100 justify-content-between">
+                                <h6 class="mb-1">Spring Sale</h6>
+                                <small>April 1-10</small>
+                            </div>
+                            <p class="mb-1 small">Seasonal discount on all farming products</p>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

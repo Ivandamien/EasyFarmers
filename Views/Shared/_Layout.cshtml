@@ -1,0 +1,280 @@
+﻿@* <!DOCTYPE html> *@
+@* <html lang="en"> *@
+@* <head> *@
+@*     <meta charset="utf-8"/> *@
+@*     <meta name="viewport" content="width=device-width, initial-scale=1.0"/> *@
+@*     <title>@ViewData["Title"] - ProductCatalogApp</title> *@
+@*     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css"/> *@
+@*     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true"/> *@
+@*     <link rel="stylesheet" href="~/ProductCatalogApp.styles.css" asp-append-version="true"/> *@
+@* </head> *@
+@* <body> *@
+@* <header> *@
+@*     <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3"> *@
+@*         <div class="container-fluid"> *@
+@*             <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">ProductCatalogApp</a> *@
+@*             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent" *@
+@*                     aria-expanded="false" aria-label="Toggle navigation"> *@
+@*                 <span class="navbar-toggler-icon"></span> *@
+@*             </button> *@
+@*             <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between"> *@
+@*                 <ul class="navbar-nav flex-grow-1"> *@
+@*                     <li class="nav-item"> *@
+@*                         <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a> *@
+@*                     </li> *@
+@*                     <li class="nav-item"> *@
+@*                         <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="About">About</a> *@
+@*                     </li> *@
+@*                     <li class="nav-item"> *@
+@*                         <a class="nav-link text-dark" asp-area="" asp-controller="Product" asp-action="Index">Products</a> *@
+@*                     </li> *@
+@*                     <li class="nav-item"> *@
+@*                         <a class="nav-link text-dark" asp-area="" asp-controller="Cart" asp-action="Index">Cart</a> *@
+@*                     </li> *@
+@*                     @if (User.IsInRole("Admin")) *@
+@*                     { *@
+@*                         <li class="nav-item"> *@
+@*                             <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="Dashboard">Admin</a> *@
+@*                         </li> *@
+@*                     } *@
+@*                 </ul> *@
+@*                 <partial name="_LoginPartial" /> *@
+@*             </div> *@
+@*         </div> *@
+@*     </nav></header> *@
+@* <div class="container"> *@
+@*     <main role="main" class="pb-3"> *@
+@*         @RenderBody() *@
+@*     </main> *@
+@* </div> *@
+@* *@
+@* <footer class="border-top footer text-muted"> *@
+@*     <div class="container"> *@
+@*         &copy; 2025 - ProductCatalogApp - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a> *@
+@*     </div> *@
+@* </footer> *@
+@* <script src="~/lib/jquery/dist/jquery.min.js"></script> *@
+@* <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script> *@
+@* <script src="~/js/site.js" asp-append-version="true"></script> *@
+@* @await RenderSectionAsync("Scripts", required: false) *@
+@* </body> *@
+@* </html> *@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>@ViewData["Title"] - EasyFarmersApp</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true"/>
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Farming theme colors */
+        body {
+            background-color: #f1f8e9; /* Light green background */
+        }
+
+        /* Navbar styling with plant/farming theme */
+        .navbar-farm {
+            background-color: #2e7d32; /* Forest green */
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+
+        .navbar-brand-farm {
+            font-weight: bold;
+            font-size: 1.4rem;
+            color: #ffffff !important;
+        }
+
+        /* Nav links styling - enhanced visibility */
+        .nav-link-farm {
+            color: #ffffff !important; /* White text for better visibility */
+            font-weight: 500;
+            padding: 0.5rem 0.8rem !important;
+            margin: 0 0.2rem;
+            border-radius: 4px;
+            transition: all 0.2s ease;
+            border: 1px solid transparent;
+        }
+
+        .nav-link-farm:hover {
+            background-color: #388e3c; /* Slightly lighter green */
+            color: #ffffff !important;
+            border-color: #a5d6a7;
+        }
+
+        /* Active link styling */
+        .nav-link-farm.active {
+            background-color: #1b5e20; /* Darker green */
+            color: #ffffff !important;
+            font-weight: bold;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+            border-color: #ffffff;
+        }
+
+        /* Login area styling */
+        .navbar-nav .login-text {
+            color: #ffffff !important;
+            font-weight: 500;
+        }
+
+        .navbar-nav .login-text:hover {
+            color: #e8f5e9 !important;
+        }
+
+        /* Footer styling */
+        .footer-farm {
+            background-color: #1b5e20; /* Dark green */
+            color: #ffffff;
+        }
+
+        .footer-link {
+            color: #ffffff !important;
+            text-decoration: none;
+            transition: color 0.2s ease;
+            font-weight: 500;
+        }
+
+        .footer-link:hover {
+            text-decoration: underline;
+        }
+
+        /* Container styling without white background */
+        .container-farm {
+            padding: 0.5rem;
+        }
+
+        /* Main content area */
+        .main-content {
+            background-color: #f8f9fa;
+            border-radius: 6px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            padding: 1.5rem;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <nav class="navbar navbar-expand-lg navbar-dark navbar-farm">
+        <div class="container container-farm">
+            <a class="navbar-brand navbar-brand-farm" asp-area="" asp-controller="Home" asp-action="Index">
+                <i class="fas fa-leaf me-2"></i>EasyFarmersApp
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="navbar-collapse collapse d-lg-inline-flex justify-content-between">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link nav-link-farm" asp-area="" asp-controller="Home" asp-action="Index">
+                            <i class="fas fa-home me-1"></i> Home
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link nav-link-farm" asp-area="" asp-controller="Home" asp-action="About">
+                            <i class="fas fa-info-circle me-1"></i> About
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link nav-link-farm" asp-area="" asp-controller="Product" asp-action="Index">
+                            <i class="fas fa-seedling me-1"></i> Products
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link nav-link-farm" asp-area="" asp-controller="Cart" asp-action="Index">
+                            <i class="fas fa-shopping-basket me-1"></i> Cart
+                        </a>
+                    </li>
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link nav-link-farm" asp-area="" asp-controller="Admin" asp-action="Dashboard">
+                                <i class="fas fa-user-shield me-1"></i> Admin
+                            </a>
+                        </li>
+                    }
+                </ul>
+                <div class="navbar-nav">
+                    <!-- Override the partial to force style -->
+                    <style>
+                        /* Target any links inside _LoginPartial */
+                        .login-partial a {
+                            color: #ffffff !important;
+                            font-weight: 500;
+                            text-decoration: none;
+                            transition: color 0.2s ease;
+                            padding: 0.3rem 0.5rem;
+                            border-radius: 4px;
+                        }
+
+                        .login-partial a:hover {
+                            background-color: rgba(255,255,255,0.1);
+                            text-decoration: none;
+                        }
+
+                        /* If there's a form in the partial */
+                        .login-partial form button {
+                            color: #ffffff;
+                            background-color: transparent;
+                            border: 1px solid #a5d6a7;
+                            border-radius: 4px;
+                            padding: 0.3rem 0.8rem;
+                            transition: all 0.2s ease;
+                            font-weight: 500;
+                        }
+
+                        .login-partial form button:hover {
+                            background-color: #1b5e20;
+                            border-color: #ffffff;
+                        }
+                    </style>
+                    <div class="login-partial">
+                        <partial name="_LoginPartial" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<div class="container py-4">
+    <main role="main" class="main-content">
+        @RenderBody()
+    </main>
+</div>
+
+<footer class="border-top footer py-3 footer-farm">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <p class="mb-0">&copy; 2025 - ProductCatalogApp</p>
+            </div>
+            <div class="col-md-6 text-md-end">
+                <a class="footer-link" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="~/js/site.js" asp-append-version="true"></script>
+<script>
+    // Add active class to current page link
+    $(document).ready(function() {
+        let currentUrl = window.location.pathname;
+        $('.navbar-nav .nav-link').each(function() {
+            let linkUrl = $(this).attr('href');
+            if (linkUrl && currentUrl.indexOf(linkUrl) !== -1 && linkUrl !== '/') {
+                $(this).addClass('active');
+            } else if (currentUrl === '/' && linkUrl === '/') {
+                $(this).addClass('active');
+            }
+        });
+    });
+</script>
+@await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

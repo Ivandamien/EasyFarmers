@@ -1,0 +1,224 @@
+@model List<EasyFarmers.Models.CartItem>
+
+@{
+    ViewData["Title"] = "Checkout - Easy Farming";
+}
+
+<div class="container my-5">
+    <div class="row">
+        <div class="col-lg-8">
+            <div class="card border-0 shadow-sm mb-4">
+                <div class="card-header bg-success text-white">
+                    <h5 class="card-title mb-0">Shipping Information</h5>
+                </div>
+                <div class="card-body">
+                    <form id="checkoutForm" asp-action="PlaceOrder" method="post">
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="FirstName" class="form-label">First Name</label>
+                                <input type="text" class="form-control" id="FirstName" name="FirstName" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="LastName" class="form-label">Last Name</label>
+                                <input type="text" class="form-control" id="LastName" name="LastName" required>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="Email" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="Email" name="Email" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="PhoneNumber" class="form-label">Phone Number</label>
+                            <input type="tel" class="form-control" id="PhoneNumber" name="PhoneNumber" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="Address" class="form-label">Address</label>
+                            <input type="text" class="form-control" id="Address" name="Address" required>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="City" class="form-label">City</label>
+                                <input type="text" class="form-control" id="City" name="City" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="PostalCode" class="form-label">Postal Code</label>
+                                <input type="text" class="form-control" id="PostalCode" name="PostalCode" required>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="Country" class="form-label">Country</label>
+                            <input type="text" class="form-control" id="Country" name="Country" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="Notes" class="form-label">Order Notes (Optional)</label>
+                            <textarea class="form-control" id="Notes" name="Notes" rows="3"></textarea>
+                        </div>
+
+                        <div class="card mt-4 mb-4">
+                            <div class="card-header bg-light">
+                                <h5 class="card-title mb-0">Payment Method</h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="mb-3">
+                                    <div class="form-check mb-2">
+                                        <input class="form-check-input" type="radio" name="paymentMethod" id="paypal" value="PayPal" checked>
+                                        <label class="form-check-label" for="paypal">
+                                            <i class="fab fa-paypal text-primary me-2"></i> PayPal
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="paymentMethod" id="mpesa" value="MPESA">
+                                        <label class="form-check-label" for="mpesa">
+                                            <i class="fas fa-mobile-alt text-success me-2"></i> M-PESA
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div id="paypal-details" class="payment-details">
+                                    <div class="alert alert-info">
+                                        <small><i class="fas fa-info-circle me-2"></i>You will be redirected to a simulated PayPal checkout.</small>
+                                    </div>
+                                </div>
+
+                                <div id="mpesa-details" class="payment-details d-none">
+                                    <div class="mb-3">
+                                        <label for="mpesaNumber" class="form-label">M-PESA Phone Number</label>
+                                        <input type="tel" class="form-control" id="mpesaNumber" name="mpesaNumber" placeholder="e.g., 254712345678">
+                                    </div>
+                                    <div class="alert alert-info">
+                                        <small><i class="fas fa-info-circle me-2"></i>For this demo, no actual M-PESA transaction will occur.</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-success btn-lg w-100">
+                            <i class="fas fa-check-circle me-2"></i>Place Order
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-4">
+            <div class="card border-0 shadow-sm mb-4">
+                <div class="card-header bg-success text-white">
+                    <h5 class="card-title mb-0">Order Summary</h5>
+                </div>
+                <div class="card-body">
+                    <div class="d-flex justify-content-between mb-2">
+                        <span>Items (@Model.Count):</span>
+                        <span>$@Model.Sum(c => c.Product.Price * c.Quantity).ToString("F2")</span>
+                    </div>
+                    <div class="d-flex justify-content-between mb-2">
+                        <span>Shipping:</span>
+                        <span>$0.00</span>
+                    </div>
+                    <hr>
+                    <div class="d-flex justify-content-between fw-bold">
+                        <span>Total:</span>
+                        <span class="text-success">$@Model.Sum(c => c.Product.Price * c.Quantity).ToString("F2")</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card border-0 shadow-sm">
+                <div class="card-header bg-light">
+                    <h5 class="card-title mb-0">Order Items</h5>
+                </div>
+                <div class="card-body p-0">
+                    <ul class="list-group list-group-flush">
+                        @foreach (var item in Model)
+                        {
+                            <li class="list-group-item">
+                                <div class="d-flex">
+                                    <div class="flex-shrink-0">
+                                        @if (!string.IsNullOrEmpty(item.Product.ImageUrl))
+                                        {
+                                            <img src="@item.Product.ImageUrl" alt="@item.Product.Name" class="rounded" style="width: 50px; height: 50px; object-fit: cover;">
+                                        }
+                                        else
+                                        {
+                                            <div class="rounded bg-success bg-opacity-10 d-flex align-items-center justify-content-center" style="width: 50px; height: 50px;">
+                                                <i class="fas fa-leaf text-success"></i>
+                                            </div>
+                                        }
+                                    </div>
+                                    <div class="ms-3">
+                                        <h6 class="mb-0">@item.Product.Name</h6>
+                                        <small class="text-muted">$@item.Product.Price.ToString("F2") x @item.Quantity</small>
+                                    </div>
+                                    <div class="ms-auto text-end">
+                                        <span class="text-success fw-bold">$@((item.Product.Price * item.Quantity).ToString("F2"))</span>
+                                    </div>
+                                </div>
+                            </li>
+                        }
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function() {
+            // Payment method selection toggle
+            $('input[name="paymentMethod"]').change(function() {
+                $('.payment-details').addClass('d-none');
+                if ($(this).val() === 'PayPal') {
+                    $('#paypal-details').removeClass('d-none');
+                } else if ($(this).val() === 'MPESA') {
+                    $('#mpesa-details').removeClass('d-none');
+                }
+            });
+            
+            // Form validation
+            $('#checkoutForm').submit(function(e) {
+                const paymentMethod = $('input[name="paymentMethod"]:checked').val();
+                
+                if (paymentMethod === 'MPESA') {
+                    const mpesaNumber = $('#mpesaNumber').val();
+                    if (!mpesaNumber) {
+                        e.preventDefault();
+                        alert('Please enter your M-PESA phone number');
+                        return false;
+                    }
+                }
+                
+                // Simulate payment processing
+                const processingModal = $('#paymentProcessingModal');
+                processingModal.modal('show');
+                
+                // For demo purposes only - normally we would process real payments
+                // This setTimeout just creates a fake 2-second processing delay
+                setTimeout(function() {
+                    processingModal.modal('hide');
+                    // Form will continue submitting
+                }, 2000);
+            });
+        });
+    </script>
+    
+    <!-- Payment Processing Modal -->
+    <div class="modal fade" id="paymentProcessingModal" data-bs-backdrop="static" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-body text-center p-5">
+                    <div class="spinner-border text-success mb-3" role="status">
+                        <span class="visually-hidden">Processing payment...</span>
+                    </div>
+                    <h5>Processing Payment</h5>
+                    <p class="text-muted">Please wait while we process your payment...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+}
